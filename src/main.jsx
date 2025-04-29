@@ -16,24 +16,24 @@ import CoffeeDetails from './components/CoffeeDetails.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    Component: MainLayout, 
+    Component: MainLayout,
     children: [
       {
         index: true,
-        loader: ()=> fetch('http://localhost:3000/coffees'),
+        loader: () => fetch('http://localhost:3000/coffees'),
         Component: Home
-      }, 
+      },
       {
         path: 'addCoffee',
         Component: AddCoffee
-      }, 
+      },
       {
-        path: 'coffee/:id', 
+        path: 'coffee/:id',
         Component: CoffeeDetails
       },
       {
         path: 'updateCoffee/:id',
-        loader: ({params}) => fetch(`http://localhost:3000/coffees/${params.id}`) ,
+        loader: ({ params }) => fetch(`http://localhost:3000/coffees/${params.id}`),
         Component: UpdateCoffee
       }
     ]
