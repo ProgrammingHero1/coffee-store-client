@@ -11,6 +11,7 @@ import MainLayout from './layouts/MainLayout.jsx';
 import Home from './components/Home.jsx';
 import AddCoffee from './components/AddCoffee.jsx';
 import UpdateCoffee from './components/UpdateCoffee.jsx';
+import CoffeeDetails from './components/CoffeeDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
         Component: AddCoffee
       }, 
       {
-        path: 'updateCoffee',
+        path: 'coffee/:id', 
+        Component: CoffeeDetails
+      },
+      {
+        path: 'updateCoffee/:id',
         Component: UpdateCoffee
       }
     ]
