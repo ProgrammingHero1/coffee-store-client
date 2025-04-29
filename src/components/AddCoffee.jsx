@@ -2,9 +2,25 @@ import React from 'react';
 
 const AddCoffee = () => {
 
-    const handleAddCoffee = e =>{
+    const handleAddCoffee = e => {
         e.preventDefault();
         const form = e.target;
+        const formData = new FormData(form);
+        const newCoffee = Object.fromEntries(formData.entries())
+        console.log(newCoffee);
+
+        // send coffee data to the db
+        fetch('http://localhost:3000/coffees', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newCoffee)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('after adding coffee to db', data)
+            })
     }
 
     return (
@@ -20,8 +36,8 @@ const AddCoffee = () => {
                         <input type="text" name='name' className="input w-full" placeholder="Coffee Name" />
                     </fieldset>
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-                        <label className="label">Chef</label>
-                        <input type="text" name='chef' className="input w-full" placeholder="Chef Name" />
+                        <label className="label">Quantity</label>
+                        <input type="text" name='quantity' className="input w-full" placeholder="Quantity Name" />
                     </fieldset>
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
                         <label className="label">Supplier</label>
